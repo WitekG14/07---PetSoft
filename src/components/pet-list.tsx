@@ -1,6 +1,7 @@
+import { Pet } from "@/lib/types";
 import Image from "next/image";
 
-function PetList({ pets }) {
+function PetList({ pets }: { pets: Pet[] }) {
   return (
     <ul className="bg-white border-b border-black/8">
       {/* <li>
