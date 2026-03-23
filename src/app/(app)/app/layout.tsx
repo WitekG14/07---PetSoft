@@ -1,15 +1,22 @@
 import AppFooter from "@/components/app-footer";
 import AppHeader from "@/components/app-header";
 import BackgroundPattern from "@/components/background-pattern";
+import PetContextProvider from "@/contexts/pet-context-provider";
 
-function Layout({ children }: { children: React.ReactNode }) {
+async function Layout({ children }: { children: React.ReactNode }) {
+  const res = await fetch(
+    "https://bytegrad.com/course-assets/projects/petsoft/api/pets",
+  );
+  if (!res.ok) throw new Error("Could not fetch pets");
+  const data = await res.json();
+
   return (
     <>
       <BackgroundPattern />
 
       <div className="flex flex-col max-w-262.5 mx-auto px-4 min-h-screen">
         <AppHeader />
-        {children}
+        <PetContextProvider data={data}>{children}</PetContextProvider>
         <AppFooter />
       </div>
     </>
