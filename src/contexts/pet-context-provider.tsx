@@ -6,6 +6,7 @@ import React, { createContext, useState } from "react";
 type TPetContext = {
   pets: Pet[];
   selectedPetId: string | null;
+  selectedPet: Pet | undefined;
   handleChangeSelectedPetId: (id: string) => void;
 };
 
@@ -18,16 +19,21 @@ function PetContextProvider({
   children: React.ReactNode;
   data: Pet[];
 }) {
+  // state
   const [pets, setPets] = useState(data);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
 
+  // derived state
+  const selectedPet = pets.find((pet) => pet.id === selectedPetId);
+
+  // event handlers / actions
   const handleChangeSelectedPetId = (id: string) => {
     setSelectedPetId(id);
   };
 
   return (
     <PetContext.Provider
-      value={{ pets, selectedPetId, handleChangeSelectedPetId }}
+      value={{ pets, selectedPetId, selectedPet, handleChangeSelectedPetId }}
     >
       {children}
     </PetContext.Provider>
