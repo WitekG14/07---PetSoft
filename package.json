@@ -28,8 +28,8 @@
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.0.1",
     "postcss": "^8",
-    "tailwindcss": "^4.4.2",
-    "eslint": "^9",
+    "tailwindcss": "^4.2.2",
+    "eslint": "^10.1.0",
     "eslint-config-next": "^16.1.6"
   }
 }
